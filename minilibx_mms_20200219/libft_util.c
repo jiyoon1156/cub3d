@@ -6,7 +6,7 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:29:24 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 16:07:57 by jhur             ###   ########.fr       */
+/*   Updated: 2020/05/14 18:34:09 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	j;
 
-	result = malloc(sizeof(char *) * (ft_wordcount(s, c) + 1));
-	if (result == 0)
+	if (!s || !(result = malloc(sizeof(char *) * (ft_wordcount(s, c) + 1))))
 		return (0);
 	i = 0;
 	while (*s)

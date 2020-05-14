@@ -6,7 +6,7 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:34:03 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 16:09:43 by jhur             ###   ########.fr       */
+/*   Updated: 2020/05/14 18:18:51 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	free_info(char **info, char const *s, char c);
 char	*ft_strjoin_point(char const *s1, char const *s2);
 void	free_info(char **info, char const *s, char c);
-int		RGB(int r, int g, int b);
+int		ft_rgb(int r, int g, int b);
+void	ft_free(char *s_res);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:34:17 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 15:45:42 by jhur             ###   ########.fr       */
+/*   Updated: 2020/05/14 18:31:01 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,30 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define window_width 800
-# define window_height 800
-# define texWidth 64
-# define texHeight 64
-# define mapWidth 24
-# define mapHeight 24
-# define uDiv 0.5
-# define vDiv 0.5
-# define vMove 100
-# define Error 0
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 800
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
+# define UDIV 0.5
+# define VDIV 0.5
+# define VMOVE 100
+# define ERROR 0
 
+typedef struct	s_gnl
+{
+	char	*map_tmp;
+	char	**map;
+	char	*tmp;
+}				t_gnl;
 typedef struct	s_save
 {
-    int	size;
-    int	unused;
-    int	offset_begin;
-    int	header_bytes;
-    int	plane;
-    int	bpixel;
-    int	fd;
+	int	size;
+	int	unused;
+	int	offset_begin;
+	int	header_bytes;
+	int	plane;
+	int	bpixel;
+	int	fd;
 }				t_save;
 
 typedef struct	s_data
@@ -72,19 +76,19 @@ typedef struct	s_pars
 }				t_pars;
 typedef struct	s_sp_info
 {
-	double	tX;
-	double	tY;
-	int		spriteScreenX;
-	int		vMS;
-	int		sp_Hei;
-	int		drawStartY;
-	int		drawEndY;
-	int		spriteWidth;
-	int		drawStartX;
-	int		drawEndX;
-	int		stX;
-	int		stY;
-	int		numSprites;
+	double	tx;
+	double	ty;
+	int		spritescreenx;
+	int		vms;
+	int		sp_hei;
+	int		drawstarty;
+	int		drawendy;
+	int		spritewidth;
+	int		drawstartx;
+	int		drawendx;
+	int		stx;
+	int		sty;
+	int		numsprites;
 }				t_sp_info;
 typedef struct	s_sp
 {
@@ -97,59 +101,58 @@ typedef struct	s_vars {
 	void		*win;
 	int			color;
 	char		*string;
-	double		posX;
-	double		posY;
-	double		raydirX;
-	double		olddirX;
-	double		dirX;
-	double		raydirY;
-	double		olddirY;
-	double		dirY;
+	double		posx;
+	double		posy;
+	double		raydirx;
+	double		olddirx;
+	double		dirx;
+	double		raydiry;
+	double		olddiry;
+	double		diry;
 	double		rot_speed;
 	double		moving_speed;
-	double		oldplaneX;
-	double		planeX;
-	double		planeY;
-	int			mapX;
-	int			mapY;
+	double		oldplanex;
+	double		planex;
+	double		planey;
+	int			mapx;
+	int			mapy;
 	t_data		img;
 	int			key;
-	double		texPos;
+	double		texpos;
 	double		step;
-	int			texX;
-	int			texY;
-	int			texNum;
+	int			texx;
+	int			texy;
 	t_data		tex[5];
-	int			texWid;
-	int			texHei;
+	int			texwid;
+	int			texhei;
 	t_pars		pars;
 	t_sp_info	si;
 	t_sp		*sp;
 	int			idx;
-	double		cameraX;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	int			stepX;
-	int			stepY;
+	double		camerax;
+	double		sidedistx;
+	double		sidedisty;
+	double		deltadistx;
+	double		deltadisty;
+	double		perpwalldist;
+	int			stepx;
+	int			stepy;
 	int			hit;
 	int			side;
-	int			lineHei;
-	int			drawStart;
-	int			drawEnd;
-	double		wallX;
+	int			linehei;
+	int			drawstart;
+	int			drawend;
+	double		wallx;
 	int			alpha_count;
+	char		**info;
 }				t_vars;
 
-void			dotting(t_vars *vars, int x, int drawStart,
-int drawEnd, int side);
+void			dotting(t_vars *vars, int x, int side);
 int				key_pressed(int keycode, t_vars *vars);
 void			render(t_vars *vars);
 int				parsing(t_pars *pars, char *file, t_vars *vars);
 int				read_map(int fd, char *line, t_pars *pars, t_vars *vars);
-void			sp_casting(t_vars *vars, double *Zbuffer);
+void			sp_casting(t_vars *vars, double *zbuffer);
 int				init_pos(t_vars *vars, int x, int y, char c);
 int				map_error(char **map, int w, int h, t_vars *vars);
 char			*ft_strchr(const char *s, int c);

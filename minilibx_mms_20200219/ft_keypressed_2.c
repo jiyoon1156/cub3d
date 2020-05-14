@@ -6,7 +6,7 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:19:29 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 15:12:48 by jhur             ###   ########.fr       */
+/*   Updated: 2020/05/14 17:19:21 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,40 @@
 
 void	go_forward(t_vars *vars)
 {
-	if (vars->pars.map[(int)(vars->posX + vars->dirX)][(int)(vars->posY)]
+	if (vars->pars.map[(int)(vars->posx + vars->dirx)][(int)(vars->posy)]
 	!= '1')
-		vars->posX += vars->dirX * vars->moving_speed;
-	if (vars->pars.map[(int)(vars->posX)][(int)(vars->posY + vars->dirY)]
+		vars->posx += vars->dirx * vars->moving_speed;
+	if (vars->pars.map[(int)(vars->posx)][(int)(vars->posy + vars->diry)]
 	!= '1')
-		vars->posY += (vars->dirY) * vars->moving_speed;
+		vars->posy += (vars->diry) * vars->moving_speed;
 }
 
 void	go_backward(t_vars *vars)
 {
-	if (vars->pars.map[(int)(vars->posX - vars->dirX)][(int)(vars->posY)]
+	if (vars->pars.map[(int)(vars->posx - vars->dirx)][(int)(vars->posy)]
 	!= '1')
-		vars->posX -= vars->dirX * vars->moving_speed;
-	if (vars->pars.map[(int)(vars->posX)][(int)(vars->posY - vars->dirY)]
+		vars->posx -= vars->dirx * vars->moving_speed;
+	if (vars->pars.map[(int)(vars->posx)][(int)(vars->posy - vars->diry)]
 	!= '1')
-		vars->posY -= vars->dirY * vars->moving_speed;
+		vars->posy -= vars->diry * vars->moving_speed;
 }
 
 void	go_right(t_vars *vars)
 {
-	if (vars->pars.map[(int)(vars->posX + vars->planeX)][(int)(vars->posY)]
+	if (vars->pars.map[(int)(vars->posx + vars->planex)][(int)(vars->posy)]
 	!= '1')
-		vars->posX += (vars->planeX) * vars->moving_speed;
-	if (vars->pars.map[(int)(vars->posX)][(int)(vars->posY + vars->planeY)]
+		vars->posx += (vars->planex) * vars->moving_speed;
+	if (vars->pars.map[(int)(vars->posx)][(int)(vars->posy + vars->planey)]
 	!= '1')
-		vars->posY += (vars->planeY) * vars->moving_speed;
+		vars->posy += (vars->planey) * vars->moving_speed;
 }
 
 void	go_left(t_vars *vars)
 {
-	if (vars->pars.map[(int)(vars->posX - vars->planeX)][(int)(vars->posY)]
+	if (vars->pars.map[(int)(vars->posx - vars->planex)][(int)(vars->posy)]
 	!= '1')
-		vars->posX -= (vars->planeX) * vars->moving_speed;
-	if (vars->pars.map[(int)(vars->posX)][(int)(vars->posY - vars->planeY)]
+		vars->posx -= (vars->planex) * vars->moving_speed;
+	if (vars->pars.map[(int)(vars->posx)][(int)(vars->posy - vars->planey)]
 	!= '1')
-		vars->posY -= (vars->planeY) * vars->moving_speed;
+		vars->posy -= (vars->planey) * vars->moving_speed;
 }

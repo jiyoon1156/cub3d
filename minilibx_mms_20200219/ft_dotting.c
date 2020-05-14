@@ -6,45 +6,33 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:17:41 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 15:03:37 by jhur             ###   ########.fr       */
+/*   Updated: 2020/05/14 18:05:40 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	verLine(t_vars vars, int x, int drawStart, int drawEnd, int color)
-{
-	int	y;
-
-	y = drawStart;
-	while (y < drawEnd)
-	{
-		vars.img.data[y * vars.pars.resolution_w + x] = color;
-		++y;
-	}
-}
-
 int		get_color(t_vars *vars, int side)
 {
-	vars->texY = (int)(vars->texPos) & (texHeight - 1);
-	vars->texPos += vars->step;
-	if (side == 1 && vars->raydirY >= 0)
-		return (vars->tex[0].data)[vars->texWid * vars->texY + vars->texX];
-	else if (side == 1 && vars->raydirY < 0)
-		return (vars->tex[1].data)[vars->texWid * vars->texY + vars->texX];
-	else if (side == 0 && vars->raydirX >= 0)
-		return (vars->tex[2].data)[vars->texWid * vars->texY + vars->texX];
+	vars->texy = (int)(vars->texpos) & (TEX_HEIGHT - 1);
+	vars->texpos += vars->step;
+	if (side == 1 && vars->raydiry >= 0)
+		return (vars->tex[0].data)[vars->texwid * vars->texy + vars->texx];
+	else if (side == 1 && vars->raydiry < 0)
+		return (vars->tex[1].data)[vars->texwid * vars->texy + vars->texx];
+	else if (side == 0 && vars->raydirx >= 0)
+		return (vars->tex[2].data)[vars->texwid * vars->texy + vars->texx];
 	else
-		return (vars->tex[3].data)[vars->texWid * vars->texY + vars->texX];
+		return (vars->tex[3].data)[vars->texwid * vars->texy + vars->texx];
 }
 
-void	dotting(t_vars *vars, int x, int drawStart, int drawEnd, int side)
+void	dotting(t_vars *vars, int x, int side)
 {
 	int	y;
 	int	ceil;
 	int	color;
 
-	y = drawStart;
+	y = vars->drawstart;
 	ceil = 0;
 	while (ceil < y)
 	{
@@ -52,7 +40,7 @@ void	dotting(t_vars *vars, int x, int drawStart, int drawEnd, int side)
 		vars->img.data[ceil * vars->pars.resolution_w + x] = color;
 		++ceil;
 	}
-	while (y < drawEnd)
+	while (y < vars->drawend)
 	{
 		color = get_color(vars, side);
 		vars->img.data[y * vars->pars.resolution_w + x] = color;

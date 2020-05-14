@@ -6,7 +6,7 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:28:09 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 16:06:16 by jhur             ###   ########.fr       */
+/*   Updated: 2020/05/14 18:32:45 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,16 @@ void	free_info(char **info, char const *s, char c)
 	free(info);
 }
 
-int		RGB(int r, int g, int b)
+int		ft_rgb(int r, int g, int b)
 {
 	return (b | g << 8 | r << 16);
+}
+
+void	ft_free(char *s_res)
+{
+	if (s_res)
+	{
+		free(s_res);
+		s_res = 0;
+	}
 }

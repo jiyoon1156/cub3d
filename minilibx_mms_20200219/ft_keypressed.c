@@ -6,7 +6,7 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:20:30 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 15:16:07 by jhur             ###   ########.fr       */
+/*   Updated: 2020/05/14 17:44:43 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 void	rotate_right(t_vars *vars)
 {
-	vars->olddirX = vars->dirX;
-	vars->dirX = vars->dirX * cos(-vars->rot_speed) -
-	vars->dirY * sin(-vars->rot_speed);
-	vars->dirY = vars->olddirX * sin(-vars->rot_speed) +
-	vars->dirY * cos(-vars->rot_speed);
-	vars->oldplaneX = vars->planeX;
-	vars->planeX = vars->planeX * cos(-vars->rot_speed) -
-	vars->planeY * sin(-vars->rot_speed);
-	vars->planeY = vars->oldplaneX * sin(-vars->rot_speed) +
-	vars->planeY * cos(-vars->rot_speed);
+	vars->olddirx = vars->dirx;
+	vars->dirx = vars->dirx * cos(-vars->rot_speed) -
+	vars->diry * sin(-vars->rot_speed);
+	vars->diry = vars->olddirx * sin(-vars->rot_speed) +
+	vars->diry * cos(-vars->rot_speed);
+	vars->oldplanex = vars->planex;
+	vars->planex = vars->planex * cos(-vars->rot_speed) -
+	vars->planey * sin(-vars->rot_speed);
+	vars->planey = vars->oldplanex * sin(-vars->rot_speed) +
+	vars->planey * cos(-vars->rot_speed);
 }
 
 void	rotate_left(t_vars *vars)
 {
-	vars->olddirX = vars->dirX;
-	vars->dirX = vars->dirX * cos(vars->rot_speed) -
-	vars->dirY * sin(vars->rot_speed);
-	vars->dirY = vars->olddirX * sin(vars->rot_speed) +
-	vars->dirY * cos(vars->rot_speed);
-	vars->oldplaneX = vars->planeX;
-	vars->planeX = vars->planeX * cos(vars->rot_speed) -
-	vars->planeY * sin(vars->rot_speed);
-	vars->planeY = vars->oldplaneX * sin(vars->rot_speed) +
-	vars->planeY * cos(vars->rot_speed);
+	vars->olddirx = vars->dirx;
+	vars->dirx = vars->dirx * cos(vars->rot_speed) -
+	vars->diry * sin(vars->rot_speed);
+	vars->diry = vars->olddirx * sin(vars->rot_speed) +
+	vars->diry * cos(vars->rot_speed);
+	vars->oldplanex = vars->planex;
+	vars->planex = vars->planex * cos(vars->rot_speed) -
+	vars->planey * sin(vars->rot_speed);
+	vars->planey = vars->oldplanex * sin(vars->rot_speed) +
+	vars->planey * cos(vars->rot_speed);
 }
 
 int		key_pressed(int keycode, t_vars *vars)
@@ -52,9 +52,9 @@ int		key_pressed(int keycode, t_vars *vars)
 		go_right(vars);
 	if (keycode == K_A)
 		go_left(vars);
-	if (keycode == K_AR_L)
-		rotate_right(vars);
 	if (keycode == K_AR_R)
+		rotate_right(vars);
+	if (keycode == K_AR_L)
 		rotate_left(vars);
 	if (keycode == K_ESC)
 		exit(0);
