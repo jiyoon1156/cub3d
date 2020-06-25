@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test_2.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:09:16 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 17:46:31 by jhur             ###   ########.fr       */
+/*   Updated: 2020/06/25 13:30:28 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	get_img(t_vars *vars)
 	&vars->tex[4].bpp, &vars->tex[4].size_line, &vars->tex[4].endian);
 }
 
+int		exit_game(void)
+{
+	exit(0);
+}
+
 int		main(int argc, char **argv)
 {
 	t_vars	*vars;
@@ -56,13 +61,14 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx,
-	vars->pars.resolution_w, vars->pars.resolution_h, "Cub3d");
 	get_img(vars);
 	render(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img_ptr, 0, 0);
 	if (argc == 3 && ft_strncmp(argv[2], "--save", ft_strlen(argv[2])) == 0)
-		ft_write_bmp_file(vars);
+		return (ft_write_bmp_file(vars));
+	vars->win = mlx_new_window(vars->mlx,
+	vars->pars.resolution_w, vars->pars.resolution_h, "Cub3d");
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img_ptr, 0, 0);
 	mlx_hook(vars->win, 2, 1L << 0, &key_pressed, vars);
+	mlx_hook(vars->win, 17, 1L << 0, &exit_game, vars);
 	mlx_loop(vars->mlx);
 }

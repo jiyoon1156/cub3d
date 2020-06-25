@@ -6,13 +6,13 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:23:18 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/17 13:32:27 by jhur             ###   ########.fr       */
+/*   Updated: 2020/06/25 13:28:08 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void			ft_init_struct_save(t_vars *vars, t_save *s)
+void	ft_init_struct_save(t_vars *vars, t_save *s)
 {
 	s->size = 54 + 4 * vars->pars.resolution_w * vars->pars.resolution_h;
 	s->unused = 0;
@@ -25,7 +25,7 @@ void			ft_init_struct_save(t_vars *vars, t_save *s)
 		write(1, "Error\n", 6);
 }
 
-void			ft_write_texture_bmp_file(t_vars *vars, int fd)
+void	ft_write_texture_bmp_file(t_vars *vars, int fd)
 {
 	int		y;
 	int		x;
@@ -46,7 +46,7 @@ void			ft_write_texture_bmp_file(t_vars *vars, int fd)
 	}
 }
 
-void			ft_write_bmp_file(t_vars *vars)
+int		ft_write_bmp_file(t_vars *vars)
 {
 	t_save	s;
 
@@ -68,4 +68,5 @@ void			ft_write_bmp_file(t_vars *vars)
 	write(s.fd, &s.unused, sizeof(int));
 	ft_write_texture_bmp_file(vars, s.fd);
 	close(s.fd);
+	return (0);
 }

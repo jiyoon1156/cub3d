@@ -6,7 +6,7 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:34:17 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/17 14:07:11 by jhur             ###   ########.fr       */
+/*   Updated: 2020/06/25 13:28:45 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int				init_pos(t_vars *vars, int x, int y, char c);
 int				map_error(char **map, int w, int h, t_vars *vars);
 char			*ft_strchr(const char *s, int c);
 int				info_error(t_pars *pars);
-void			ft_write_bmp_file(t_vars *vars);
+int				ft_write_bmp_file(t_vars *vars);
 void			go_forward(t_vars *vars);
 void			go_backward(t_vars *vars);
 void			go_right(t_vars *vars);

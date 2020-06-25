@@ -6,7 +6,7 @@
 /*   By: jhur <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 14:20:30 by jhur              #+#    #+#             */
-/*   Updated: 2020/05/14 17:44:43 by jhur             ###   ########.fr       */
+/*   Updated: 2020/05/19 16:18:34 by jhur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	rotate_left(t_vars *vars)
 
 int		key_pressed(int keycode, t_vars *vars)
 {
-	vars->moving_speed = 0.1;
+	vars->moving_speed = 0.5;
 	vars->rot_speed = 0.2;
 	if (keycode == K_W)
 		go_forward(vars);
